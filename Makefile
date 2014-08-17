@@ -1,7 +1,8 @@
 EXECS      = rgb gamma random demo
 LIB_LED    = libp9813.a
 CC         = gcc
-LDFLAGS    = -lftd2xx
+#LDFLAGS    = -lftd2xx
+LDFLAGS	= -l/usr/lib/libftd2xx.so.1.2.7
 
 # Platform-specific rules
 ifeq ($(shell uname -s),Darwin)
@@ -12,7 +13,7 @@ endif
 ifeq ($(shell uname -s),Linux)
   CFLAGS   = -O3 -fomit-frame-pointer
   LDFLAGS += -lpthread -lrt -lm
-  SUDO     = sudo
+  SUDO     = 
 endif
 ifeq ($(findstring CYGWIN,$(shell uname -s)),CYGWIN)
   CFLAGS   = -O3 -fomit-frame-pointer -DCYGWIN
@@ -64,10 +65,10 @@ else
 ifeq ($(shell uname -s),Linux)
 # Linux driver stuff
   unload:
-	sudo modprobe -r ftdi_sio
-	sudo modprobe -r usbserial
+	modprobe -r ftdi_sio
+	modprobe -r usbserial
   load:
-	sudo modprobe ftdi_sio
-	sudo modprobe usbserial
+	modprobe ftdi_sio
+	modprobe usbserial
 endif
 endif
