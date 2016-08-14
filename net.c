@@ -153,6 +153,9 @@ int main(int argc,char *argv[])
 	   in order to avoid repetition between the component colors. */
 	for(x=0.0;;x += (double)pixelsPerStrand / 20000.0)
 	{
+
+    // Pull data off of the network
+    // NOTE: This is blocking. Not very good. I'll update this when I have time
 		bzero(buffer, bufferSize);
 		n = read(newsockfd, buffer, bufferSize-1);
 		if (n < 0) error("ERROR reading from socket");
@@ -160,7 +163,8 @@ int main(int argc,char *argv[])
 
 		n = write(newsockfd,"I got your message",18);
 		if (n < 0) error("ERROR writing to socket");
-		
+
+    // Do the old sine color animation:
 		s1 = sin(x                 ) *  11.0;
 		s2 = sin(x *  0.857 - 0.214) * -13.0;
 		s3 = sin(x * -0.923 + 1.428) *  17.0;
@@ -179,6 +183,9 @@ int main(int argc,char *argv[])
 			TCprintError(i);
 
 		/* Update statistics once per second. */
+    // NOTE: Stats make it hard to debug the network code. I'll add this back
+    // in when I get more of the network stuff working correctly:
+    
 // 		if((t = time(NULL)) != prev)
 // 		{
 // #ifdef CYGWIN
