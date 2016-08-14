@@ -11,9 +11,9 @@ ifeq ($(shell uname -s),Darwin)
   JNILIB     = libTotalControl.jnilib
 endif
 ifeq ($(shell uname -s),Linux)
-  CFLAGS     = -O3 -fomit-frame-pointer
+  CFLAGS     = -O3 -fomit-frame-pointer -fPIC
   LDFLAGS    = -lm -shared
-  JDK        = /usr/lib/jvm/java-6-sun
+  JDK        = /usr/lib/jvm/default-java
   CLASSPATH  = $(JDK)/lib/visualvm/platform/core/core.jar
   HEADERPATH = $(JDK)/include -I$(JDK)/include/linux
   DESTPATH   = ~/sketchbook/libraries/TotalControl

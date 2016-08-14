@@ -1,0 +1,14 @@
+rgb
+gamma
+random
+demo
+net
+
+p9813.o
+libp9813.a
+
+processing/TotalControl/
+processing/TotalControl.o
+processing/TotalControl.jar
+processing/TotalControl_TotalControl.h
+processing/libTotalControl.so
