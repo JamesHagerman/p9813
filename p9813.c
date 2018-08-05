@@ -54,13 +54,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <time.h>
 #ifdef CYGWIN
   #include <sys/time.h>
   #define va_list void
   #include <w32api/windef.h>
   #include <w32api/winbase.h>
 #endif
+
 #include <ftd2xx.h>
 #include "p9813.h"
 #include "calibration.h"
@@ -228,7 +228,7 @@ TCstatusCode TCopen(
 	   never changes after that, unless the clock pin is changed. */
 	latchOffset = bytesPerPixel * p;
 	latchLen    = bytesPerPixel * ((p + 63) / 64);
-	bzero(&pixelOutBuffer[latchOffset],latchLen);
+	memset(&pixelOutBuffer[latchOffset], 0, latchLen);
 	if(64 == bytesPerPixel)
 	{
 		/* If software-bitbanging the clock, add those bits. */
@@ -374,7 +374,7 @@ TCstatusCode TCinitStats(TCstats *stats)
 {
 	if(!stats) return TC_ERR_VALUE;
 
-	bzero(stats,sizeof(TCstats));
+	memset(stats,0,sizeof(TCstats));
 	stats->fps      =
 	stats->fpsAvg   =
 	stats->ma       =
@@ -435,7 +435,7 @@ TCstatusCode TCrefresh(
 	   leave gaps in the sequence -- it isn't guaranteed to have touched
 	   every pixel.  This is normal and not a bad thing. */
 	len = pixelsPerStrand * bytesPerPixel;
-	bzero(pixelOutBuffer,len);
+	memset(pixelOutBuffer,0,len);
 	if(bytesPerPixel == 64)
 		for(i=1;i<len;i+=2) pixelOutBuffer[i] = strandBitMask[7];
 

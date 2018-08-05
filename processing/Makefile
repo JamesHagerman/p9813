@@ -34,10 +34,13 @@ endif
 all: TotalControl.jar $(JNILIB)
 
 TotalControl.jar: TotalControl.java
+# & 'C:\Program Files\Java\jdk1.8.0_181\bin\javac.exe' -d . -classpath "C:\Program Files\Java\jdk1.8.0_181\lib\visualvm\platform\core\core.jar" TotalControl.java
 	javac -d . -classpath $(CLASSPATH) TotalControl.java
+# & 'C:\Program Files\Java\jdk1.8.0_181\bin\jar.exe' -fc TotalControl.jar TotalControl
 	jar -fc TotalControl.jar TotalControl
 
 TotalControl_TotalControl.h: TotalControl.jar
+# & 'C:\Program Files\Java\jdk1.8.0_181\bin\javah.exe' TotalControl.TotalControl
 	javah TotalControl.TotalControl
 
 $(JNILIB): TotalControl.c TotalControl_TotalControl.h

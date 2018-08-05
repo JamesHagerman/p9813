@@ -107,7 +107,7 @@ typedef struct {
    Might add actual functions for HSL, HSV, etc. later on. */
 #define TCrgb(R,G,B) (((R) << 16) | ((G) << 8) | (B))
 
-extern TCstatusCode
+__declspec(dllexport) extern TCstatusCode
 	TCopen(unsigned char,int),
 	TCinitStats(TCstats*),
 	TCrefresh(TCpixel*,int*,TCstats*),
@@ -116,7 +116,7 @@ extern TCstatusCode
 	           unsigned char,unsigned char,double),
 	TCsetGammaSimple(double),
 	TCsetStrandPin(int,unsigned char);
-extern void
+__declspec(dllexport) extern void
 	TCclose(void),
 	TCdisableGamma(void),
 	TCprintStats(TCstats*),
