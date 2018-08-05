@@ -11,3 +11,7 @@ After some poking, I was able to get the `p9813.dll` to compile. I had to drop `
 More poking and I've gotten `TotalControl.dll` to compile as well as all of the Java nonesense.
 
 I've removed some things from the gitignore because I really do not want to do all of this mess again later. Sorry.
+
+## Third, `it-does-not-work.dll`
+
+Yeah, after all of this, Processing is yelling about not having the native code it needs. I'm moving on...
